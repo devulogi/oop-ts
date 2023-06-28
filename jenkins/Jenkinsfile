@@ -1,24 +1,14 @@
 pipeline {
     agent any
+    
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build')
+    }
+
     stages {
-        stage('Build') {
+        stage('Greet') {
             steps {
-                bat 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'npm run test'
-            }
-        }
-        stage('Start') {
-            steps {
-                bat 'npm run start'
-            }
-        }
-        stage('Complete') {
-            steps {
-                echo 'Job Complete!'
+                echo "Hello ${params.BRANCH}"
             }
         }
     }
